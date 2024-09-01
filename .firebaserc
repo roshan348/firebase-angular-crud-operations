@@ -1,5 +1,9 @@
 {
   "projects": {
-    "default": "student-management-syste-d24f8"
-  }
+    "default": "crud-operation-6b84d",
+    "CRUD-Operation": "crud-operation-6b84d"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }
