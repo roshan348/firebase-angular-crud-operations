@@ -5,12 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    // apiKey: 'AIzaSyAOGiHSsH8Wjqb8oAap30oucXY9RmljmMg',
-    // authDomain: 'student-management-syste-d24f8.firebaseapp.com',
-    // projectId: 'student-management-syste-d24f8',
-    // storageBucket: 'student-management-syste-d24f8.appspot.com',
-    // messagingSenderId: '788508634387',
-    // appId: '1:788508634387:web:a0049da732cef89899bee6',
+    apiKey: 'AIzaSyATfscRE3w6Ybi8K-5f7VLHugi9_x0vWmg',
+    authDomain: 'crud-operation-53f92.firebaseapp.com',
+    projectId: 'crud-operation-53f92',
+    storageBucket: 'crud-operation-53f92.appspot.com',
+    messagingSenderId: '871937597927',
+    appId: '1:871937597927:web:07fef1b5bf096162d9dd42',
+    measurementId: 'G-8KZ6SNK5J2',
   },
 };
 
