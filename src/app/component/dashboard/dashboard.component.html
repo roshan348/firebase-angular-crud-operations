@@ -3,7 +3,9 @@
     <div class="col-md-4 mt-5">
       <div class="card border-0 shadow p-3">
         <div class="form-floating mb-3 tetx-center">
-          <h5 class="text-center text-warning fs-4 fw-medium">Add Student</h5>
+          <h5 class="text-center text-warning fs-4 fw-medium">
+            {{ editMode ? "Edit Student" : "Add Student" }}
+          </h5>
         </div>
         <div class="form-floating mb-3">
           <input
@@ -37,7 +39,7 @@
         </div>
         <div class="form-floating mb-3">
           <input
-            type="text"
+            type="number"
             class="form-control"
             id="mobile"
             name="mobile"
@@ -45,6 +47,14 @@
           />
           <label for="mobile">Mobile</label>
         </div>
+        <button
+          type="button"
+          class="btn btn-outline-success"
+          *ngIf="editMode"
+          (click)="updateStudent()"
+        >
+          Update Student
+        </button>
         <button
           type="button"
           class="btn btn-outline-success"
@@ -65,7 +75,7 @@
                 <th scope="col">Last name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Mobile</th>
-                <th scope="col">Action</th>
+                <th scope="col mx-4">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -74,12 +84,18 @@
                 <td>{{ studnet.last_name }}</td>
                 <td>{{ studnet.email }}</td>
                 <td>{{ studnet.mobile }}</td>
-                <td>
+                <td class="gap-2 d-flex">
                   <button
-                    class="btn btn-outline-danger"
+                    class="btn btn-outline-success btn-action"
+                    (click)="editStudent(studnet)"
+                  >
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button
+                    class="btn btn-outline-danger btn-action"
                     (click)="deleteStudent(studnet)"
                   >
-                    Delete
+                    <mat-icon>delete</mat-icon>
                   </button>
                 </td>
               </tr>

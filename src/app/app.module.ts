@@ -11,6 +11,13 @@ import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
 import { FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import {
+  AngularFirestore,
+  AngularFirestoreModule,
+} from '@angular/fire/compat/firestore';
+
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @NgModule({
@@ -35,6 +42,9 @@ import { FormsModule } from '@angular/forms';
       measurementId: 'G-8KZ6SNK5J2',
     }),
     FormsModule,
+    NoopAnimationsModule,
+    MatIconModule,
+    AngularFirestoreModule,
     // AngularFirestore,
   ],
   providers: [],

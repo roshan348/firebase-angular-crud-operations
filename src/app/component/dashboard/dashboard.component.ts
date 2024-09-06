@@ -22,16 +22,14 @@ export class DashboardComponent implements OnInit {
   last_name: string = '';
   email: string = '';
   mobile: string = '';
+  editMode: boolean = false;
+  studentToEdit: Student | null = null;
 
   constructor(private auth: AuthService, private data: DataService) {}
 
   ngOnInit(): void {
     this.getAllStudents();
   }
-
-  // register() {
-  //   this.auth.logout();
-  // }
 
   getAllStudents() {
     this.data.getAllStudents().subscribe(
@@ -54,6 +52,8 @@ export class DashboardComponent implements OnInit {
     this.last_name = '';
     this.email = '';
     this.mobile = '';
+    this.editMode = false;
+    this.studentToEdit = null;
   }
 
   addStudent() {
@@ -73,11 +73,48 @@ export class DashboardComponent implements OnInit {
     this.studentObj.last_name = this.last_name;
     this.studentObj.mobile = this.mobile;
 
-    this.data.addStudent(this.studentObj);
-    this.resetForm();
+    // this.data.addStudent(this.studentObj);
+    // this.resetForm();
+    this.data.addStudent(this.studentObj).then(() => {
+      this.resetForm();
+    });
   }
 
-  updateStudent() {}
+  updateStudent() {
+    if (
+      this.first_name == '' ||
+      this.last_name == '' ||
+      this.mobile == '' ||
+      this.email == ''
+    ) {
+      alert('Fill all input fields');
+      return;
+    }
+
+    if (this.studentToEdit) {
+      const updatedStudent: Student = {
+        id: this.id,
+        first_name: this.first_name,
+        last_name: this.last_name,
+        email: this.email,
+        mobile: this.mobile,
+      };
+
+      this.data.updateStudent(updatedStudent).then(() => {
+        this.resetForm();
+      });
+    }
+  }
+
+  editStudent(student: Student) {
+    this.studentToEdit = student;
+    this.first_name = student.first_name;
+    this.last_name = student.last_name;
+    this.email = student.email;
+    this.mobile = student.mobile;
+    this.id = student.id;
+    this.editMode = true;
+  }
 
   deleteStudent(student: Student) {
     if (
