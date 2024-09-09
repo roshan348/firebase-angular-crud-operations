@@ -73,8 +73,6 @@ export class DashboardComponent implements OnInit {
     this.studentObj.last_name = this.last_name;
     this.studentObj.mobile = this.mobile;
 
-    // this.data.addStudent(this.studentObj);
-    // this.resetForm();
     this.data.addStudent(this.studentObj).then(() => {
       this.resetForm();
     });

@@ -1,9 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4 mt-5">
+    <!-- Add/Edit Student Form -->
+    <div class="col-12 col-md-4 mt-5">
       <div class="card border-0 shadow p-3">
-        <div class="form-floating mb-3 tetx-center">
-          <h5 class="text-center text-warning fs-4 fw-medium">
+        <div class="form-floating mb-3 text-center">
+          <h5 class="text-warning fs-4 fw-medium">
             {{ editMode ? "Edit Student" : "Add Student" }}
           </h5>
         </div>
@@ -14,8 +15,9 @@
             id="firstName"
             name="firstname"
             [(ngModel)]="first_name"
+            placeholder="First Name"
           />
-          <label for="firstname">First name</label>
+          <label for="firstName">First name</label>
         </div>
         <div class="form-floating mb-3">
           <input
@@ -24,6 +26,7 @@
             id="lastName"
             name="lastName"
             [(ngModel)]="last_name"
+            placeholder="Last Name"
           />
           <label for="lastName">Last name</label>
         </div>
@@ -34,6 +37,7 @@
             id="email"
             name="email"
             [(ngModel)]="email"
+            placeholder="Email"
           />
           <label for="email">Email address</label>
         </div>
@@ -44,56 +48,62 @@
             id="mobile"
             name="mobile"
             [(ngModel)]="mobile"
+            placeholder="Mobile"
           />
           <label for="mobile">Mobile</label>
         </div>
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          *ngIf="editMode"
-          (click)="updateStudent()"
-        >
-          Update Student
-        </button>
-        <button
-          type="button"
-          class="btn btn-outline-success"
-          (click)="addStudent()"
-        >
-          Add Student
-        </button>
+        <div class="d-flex justify-content-between">
+          <button
+            type="button"
+            class="btn btn-outline-success w-100 me-2"
+            *ngIf="editMode"
+            (click)="updateStudent()"
+          >
+            Update Student
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-success w-100"
+            *ngIf="!editMode"
+            (click)="addStudent()"
+          >
+            Add Student
+          </button>
+        </div>
       </div>
     </div>
-    <div class="col-md-8 mt-2">
+
+    <!-- Student List Table -->
+    <!-- <div class="col-12 col-sm-6 col-md-8 mt-2">
       <h5 class="text-danger fs-4 fw-medium">Student List</h5>
       <div class="card p-3 mt-4 shadow">
-        <div class="card-body">
+        <div class="student-list">
           <table class="table table-hover">
             <thead>
-              <tr>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Mobile</th>
-                <th scope="col mx-4">Action</th>
+              <tr class="card-body">
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let studnet of studentsList">
-                <td>{{ studnet.first_name }}</td>
-                <td>{{ studnet.last_name }}</td>
-                <td>{{ studnet.email }}</td>
-                <td>{{ studnet.mobile }}</td>
-                <td class="gap-2 d-flex">
+              <tr class="card-body" *ngFor="let student of studentsList">
+                <td>{{ student.first_name }}</td>
+                <td>{{ student.last_name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.mobile }}</td>
+                <td class="d-flex gap-2">
                   <button
                     class="btn btn-outline-success btn-action"
-                    (click)="editStudent(studnet)"
+                    (click)="editStudent(student)"
                   >
                     <mat-icon>edit</mat-icon>
                   </button>
                   <button
                     class="btn btn-outline-danger btn-action"
-                    (click)="deleteStudent(studnet)"
+                    (click)="deleteStudent(student)"
                   >
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -101,6 +111,41 @@
               </tr>
             </tbody>
           </table>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="col-12 col-md-8 mt-2">
+      <h5 class="text-danger fs-4 fw-medium">Student List</h5>
+      <div class="card p-3 mt-4 shadow mb-5">
+        <div class="student-list">
+          <div class="student-card-header">
+            <div class="student-card-header-item">First name</div>
+            <div class="student-card-header-item">Last name</div>
+            <div class="student-card-header-item">Email</div>
+            <div class="student-card-header-item">Mobile</div>
+            <div class="student-card-header-item">Action</div>
+          </div>
+          <div *ngFor="let student of studentsList" class="student-card">
+            <div class="student-card-item">{{ student.first_name }}</div>
+            <div class="student-card-item">{{ student.last_name }}</div>
+            <div class="student-card-item">{{ student.email }}</div>
+            <div class="student-card-item">{{ student.mobile }}</div>
+            <div class="student-card-actions">
+              <button
+                class="btn btn-outline-success btn-action mt-2 mb-2"
+                (click)="editStudent(student)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                class="btn btn-outline-danger btn-action mt-2 mb-2"
+                (click)="deleteStudent(student)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
