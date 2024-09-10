@@ -10,13 +10,15 @@ import { RegisterComponent } from './component/register/register.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 import {
   AngularFirestore,
   AngularFirestoreModule,
 } from '@angular/fire/compat/firestore';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -41,10 +43,14 @@ import {
       appId: '1:871937597927:web:07fef1b5bf096162d9dd42',
       measurementId: 'G-8KZ6SNK5J2',
     }),
+    CommonModule,
     FormsModule,
     NoopAnimationsModule,
     MatIconModule,
     AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
     // AngularFirestore,
   ],
   providers: [],

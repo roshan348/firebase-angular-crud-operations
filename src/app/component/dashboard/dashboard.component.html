@@ -1,6 +1,5 @@
 <div class="container-fluid">
   <div class="row">
-    <!-- Add/Edit Student Form -->
     <div class="col-12 col-md-4 mt-5">
       <div class="card border-0 shadow p-3">
         <div class="form-floating mb-3 text-center">
@@ -73,48 +72,6 @@
       </div>
     </div>
 
-    <!-- Student List Table -->
-    <!-- <div class="col-12 col-sm-6 col-md-8 mt-2">
-      <h5 class="text-danger fs-4 fw-medium">Student List</h5>
-      <div class="card p-3 mt-4 shadow">
-        <div class="student-list">
-          <table class="table table-hover">
-            <thead>
-              <tr class="card-body">
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Mobile</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="card-body" *ngFor="let student of studentsList">
-                <td>{{ student.first_name }}</td>
-                <td>{{ student.last_name }}</td>
-                <td>{{ student.email }}</td>
-                <td>{{ student.mobile }}</td>
-                <td class="d-flex gap-2">
-                  <button
-                    class="btn btn-outline-success btn-action"
-                    (click)="editStudent(student)"
-                  >
-                    <mat-icon>edit</mat-icon>
-                  </button>
-                  <button
-                    class="btn btn-outline-danger btn-action"
-                    (click)="deleteStudent(student)"
-                  >
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div> -->
-
     <div class="col-12 col-md-8 mt-2">
       <h5 class="text-danger fs-4 fw-medium">Student List</h5>
       <div class="card p-3 mt-4 shadow mb-5">
@@ -150,4 +107,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="loader-container" *ngIf="showLoader">
+  <mat-spinner class="loader"></mat-spinner>
 </div>

@@ -4,7 +4,7 @@
     <div class="col-12 col-sm-8 col-md-6 col-lg-4">
       <div class="card shadow">
         <div class="card-body">
-          <form>
+          <form [formGroup]="loginForm">
             <div class="mb-3 text-center">
               <h4 class="fs-4 fw-medium">Login</h4>
             </div>
@@ -12,11 +12,23 @@
               <label for="exampleInputEmail1" class="form-label">Email</label>
               <input
                 type="email"
+                formControlName="email"
                 class="form-control"
                 name="email"
                 [(ngModel)]="email"
               />
+              <div
+                style="color: tomato"
+                *ngIf="
+                  loginForm.controls['email'].invalid &&
+                  (loginForm.controls['email'].dirty ||
+                    loginForm.controls['email'].touched)
+                "
+              >
+                Enter a Valid Email
+              </div>
             </div>
+
             <div class="mb-3">
               <label for="exampleInputPassword1" class="form-label"
                 >Password</label
@@ -24,9 +36,20 @@
               <input
                 type="password"
                 class="form-control"
+                formControlName="password"
                 name="password"
                 [(ngModel)]="password"
               />
+              <div
+                style="color: tomato"
+                *ngIf="
+                  loginForm.controls['password'].invalid &&
+                  (loginForm.controls['password'].dirty ||
+                    loginForm.controls['password'].touched)
+                "
+              >
+                Password is required
+              </div>
             </div>
             <button
               type="button"

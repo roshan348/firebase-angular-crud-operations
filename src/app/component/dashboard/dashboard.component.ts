@@ -9,6 +9,8 @@ import { DataService } from 'src/app/shared/data.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  showLoader: boolean = false;
+
   studentsList: Student[] = [];
   studentObj: Student = {
     id: '',
@@ -32,11 +34,13 @@ export class DashboardComponent implements OnInit {
   }
 
   getAllStudents() {
+    this.showLoader = true;
     this.data.getAllStudents().subscribe(
       (res) => {
         this.studentsList = res.map((e: any) => {
           const data = e.payload.doc.data();
           data.id = e.payload.doc.id;
+          this.showLoader = false;
           return data;
         });
       },

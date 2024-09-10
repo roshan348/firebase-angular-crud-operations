@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  showLoader = false;
+
   constructor(private fireauth: AngularFireAuth, private router: Router) {}
 
   // login method
@@ -20,7 +22,7 @@ export class AuthService {
         localStorage.setItem('token', 'true');
 
         if (res.user?.emailVerified == true) {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['/dashboard']);
         } else {
           this.router.navigate(['/verify-email']);
         }
@@ -66,7 +68,7 @@ export class AuthService {
         this.router.navigate(['/verify-email']);
       },
       (err) => {
-        alert('Something went wrong');
+        alert('Please Enter a Email');
       }
     );
   }
