@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   RegisterForm!: FormGroup;
   email: string = '';
   password: string = '';
+  hide = true;
 
   constructor(private auth: AuthService, private fb: FormBuilder) {
     this.RegisterForm = this.fb.group({

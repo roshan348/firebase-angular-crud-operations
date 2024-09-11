@@ -34,12 +34,15 @@
                 >Password</label
               >
               <input
-                type="password"
+                [type]="hide ? 'password' : 'text'"
                 class="form-control"
                 formControlName="password"
                 name="password"
                 [(ngModel)]="password"
               />
+              <mat-icon class="eye-icon" (click)="hide = !hide">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
               <div
                 style="color: tomato"
                 *ngIf="
@@ -83,7 +86,7 @@
                 >
                   <div class="card shadow text-center">
                     <div
-                      class="card-body d-flex justify-content-center align-items-center"
+                      class="card-body d-flex justify-content-center align-items-center gap-2"
                     >
                       <img
                         src="../../../assets/icons8-google-48.png"
@@ -91,7 +94,7 @@
                         height="24px"
                         width="24px"
                       />
-                      Sign In with Google
+                      <div>Sign In with Google</div>
                     </div>
                   </div>
                 </a>

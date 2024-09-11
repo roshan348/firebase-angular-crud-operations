@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   email: string = '';
   password: string = '';
   loginForm!: FormGroup;
+  hide = true;
 
   constructor(
     private auth: AuthService,

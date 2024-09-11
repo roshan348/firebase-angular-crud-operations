@@ -34,12 +34,15 @@
                 >Password</label
               >
               <input
-                type="password"
+                [type]="hide ? 'password' : 'text'"
                 class="form-control"
                 formControlName="password"
                 name="password"
                 [(ngModel)]="password"
               />
+              <mat-icon (click)="hide = !hide" class="eye-icon">{{
+                hide ? "visibility_off" : "visibility"
+              }}</mat-icon>
               <div
                 style="color: tomato"
                 *ngIf="

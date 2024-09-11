@@ -22,7 +22,7 @@ export class AuthService {
         localStorage.setItem('token', 'true');
 
         if (res.user?.emailVerified == true) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/main/dashboard']);
         } else {
           this.router.navigate(['/verify-email']);
         }
@@ -90,7 +90,7 @@ export class AuthService {
   googleSignIn() {
     return this.fireauth.signInWithPopup(new GoogleAuthProvider()).then(
       (res) => {
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/main/dashboard']);
         localStorage.setItem('token', JSON.stringify(res.user?.uid));
       },
       (err) => {

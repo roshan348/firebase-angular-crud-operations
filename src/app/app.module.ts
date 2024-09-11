@@ -19,6 +19,7 @@ import {
   AngularFirestoreModule,
 } from '@angular/fire/compat/firestore';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MainPageComponent } from './main-page/main-page.component';
 
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -30,6 +31,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     }),
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     NoopAnimationsModule,
     MatIconModule,
     AngularFirestoreModule,
