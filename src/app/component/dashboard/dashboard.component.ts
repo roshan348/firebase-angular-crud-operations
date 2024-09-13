@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Student } from 'src/app/model/student';
 import { AuthService } from 'src/app/shared/auth.service';
 import { DataService } from 'src/app/shared/data.service';
@@ -26,8 +27,18 @@ export class DashboardComponent implements OnInit {
   mobile: string = '';
   editMode: boolean = false;
   studentToEdit: Student | null = null;
+  studentForm!: FormGroup;
 
-  constructor(private auth: AuthService, private data: DataService) {}
+  constructor(
+    private auth: AuthService,
+    private data: DataService,
+    private fb: FormBuilder
+  ) {
+    this.studentForm = this.fb.group({
+      email: ['', Validators.required, Validators.email],
+      mobile: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.getAllStudents();

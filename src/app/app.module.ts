@@ -20,6 +20,8 @@ import {
 } from '@angular/fire/compat/firestore';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MainPageComponent } from './main-page/main-page.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 
@@ -54,6 +56,8 @@ import { MainPageComponent } from './main-page/main-page.component';
     FormsModule,
     ReactiveFormsModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
     // AngularFirestore,
   ],
   providers: [],
