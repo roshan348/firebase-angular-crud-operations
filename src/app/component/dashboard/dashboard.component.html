@@ -39,6 +39,15 @@
             placeholder="Email"
           />
           <label for="email">Email address</label>
+          <div
+            *ngIf="
+              studentForm.controls['email'].invalid &&
+              (studentForm.controls['email'].dirty ||
+                studentForm.controls['email'].touched)
+            "
+          >
+            Enter a valid email
+          </div>
         </div>
         <div class="form-floating mb-3">
           <input
@@ -50,6 +59,15 @@
             placeholder="Mobile"
           />
           <label for="mobile">Mobile</label>
+          <div
+            *ngIf="
+              studentForm.controls['mobile'].invalid &&
+              (studentForm.controls['mobile'].dirty ||
+                studentForm.controls['mobile'].touched)
+            "
+          >
+            Mobile is required
+          </div>
         </div>
         <div class="d-flex justify-content-between">
           <button
@@ -70,103 +88,6 @@
           </button>
         </div>
       </div>
-    </div>
-
-    <div class="col-12 col-md-4 mt-5">
-      <form [formGroup]="studentForm" class="card border-0 shadow p-3">
-        <div class="form-floating mb-3 text-center">
-          <h5 class="text-warning fs-4 fw-medium">
-            {{ editMode ? "Edit Student" : "Add Student" }}
-          </h5>
-        </div>
-
-        <div>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>First Name</mat-label>
-            <input
-              matInput
-              formControlName="firstName"
-              [(ngModel)]="first_name"
-            />
-          </mat-form-field>
-          <div
-            style="color: tomato"
-            *ngIf="
-              studentForm.controls['firstName']?.invalid &&
-              (studentForm.controls['firstName']?.dirty ||
-                studentForm.controls['firstName'].touched)
-            "
-          ></div>
-        </div>
-
-        <div>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Last Name</mat-label>
-            <input
-              matInput
-              formControlName="lastname"
-              [(ngModel)]="last_name"
-            />
-          </mat-form-field>
-          <div
-            style="color: tomato"
-            *ngIf="
-              studentForm.controls['lastname']?.invalid &&
-              (studentForm.controls['lastname']?.dirty ||
-                studentForm.controls['lastname'].touched)
-            "
-          ></div>
-        </div>
-
-        <div>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email" [(ngModel)]="email" />
-          </mat-form-field>
-          <div
-            style="color: tomato"
-            *ngIf="
-              studentForm.controls['email'].invalid &&
-              (studentForm.controls['email'].dirty ||
-                studentForm.controls['email'].touched)
-            "
-          ></div>
-        </div>
-
-        <div>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-label>Mobile</mat-label>
-            <input matInput formControlName="mobile" [(ngModel)]="mobile" />
-          </mat-form-field>
-          <div
-            style="color: tomato"
-            *ngIf="
-              studentForm.controls['mobile'].invalid &&
-              (studentForm.controls['mobile'].dirty ||
-                studentForm.controls['mobile'].touched)
-            "
-          ></div>
-        </div>
-
-        <div class="d-flex justify-content-between">
-          <button
-            type="button"
-            class="btn btn-outline-success w-100 me-2"
-            *ngIf="editMode"
-            (click)="updateStudent()"
-          >
-            Update Student
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-success w-100"
-            *ngIf="!editMode"
-            (click)="addStudent()"
-          >
-            Add Student
-          </button>
-        </div>
-      </form>
     </div>
 
     <div class="col-12 col-md-8 mt-2">
