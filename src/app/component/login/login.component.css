@@ -1,4 +1,9 @@
-.card-body{
-    justify-content: center;
-    align-items: center;
+.eye-icon {
+  position: absolute;
+  top: 47%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 999;
+  font-size: 23px;
 }

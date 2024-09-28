@@ -1,5 +1,10 @@
 {
   "projects": {
-    "default": "crud-operation-53f92"
-  }
+    "default": "crud-operation-6b84d",
+    "CRUD-Operation": "crud-operation-6b84d",
+    "development": "crud-operation-53f92"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
 }

@@ -10,7 +10,19 @@ import { RegisterComponent } from './component/register/register.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './component/forgot-password/forgot-password.component';
 import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
+import {
+  AngularFirestore,
+  AngularFirestoreModule,
+} from '@angular/fire/compat/firestore';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MainPageComponent } from './main-page/main-page.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 // import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @NgModule({
@@ -21,6 +33,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +47,17 @@ import { FormsModule } from '@angular/forms';
       appId: '1:871937597927:web:07fef1b5bf096162d9dd42',
       measurementId: 'G-8KZ6SNK5J2',
     }),
+    CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatIconModule,
+    AngularFirestoreModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatInputModule,
     // AngularFirestore,
   ],
   providers: [],

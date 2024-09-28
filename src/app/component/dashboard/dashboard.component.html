@@ -1,61 +1,177 @@
 <div class="container-fluid">
-
-    <div class="row">
-        <div class="col-md-4 mt-5">
-            <div class="card border-0 shadow p-3">
-                <div class="form-floating mb-3 tetx-center">
-                    <h5 class="text-center text-warning">Add Student</h5>
-                </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="firstName" name="firstname" [(ngModel)]="first_name">
-                        <label for="firstname">First name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="last_name">
-                        <label for="lastName">Last name</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
-                        <label for="email">Email address</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="mobile" name="mobile" [(ngModel)]="mobile">
-                        <label for="mobile">Mobile</label>
-                    </div>
-                    <button type="button" class="btn btn-outline-success" (click)="addStudent()">Add Student</button>
-            </div>
+  <div class="row">
+    <div class="col-12 col-md-4 mt-5">
+      <div class="card border-0 shadow p-3">
+        <div class="form-floating mb-3 text-center">
+          <h5 class="text-warning fs-4 fw-medium">
+            {{ editMode ? "Edit Student" : "Add Student" }}
+          </h5>
         </div>
-        <div class="col-md-8 mt-2">
-            <h5 class="text-danger"> Student List</h5>
-            <div class="card p-3 shadow">
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Mobile</th>
-                            <th scope="col">Action</th> 
-                          </tr> 
-
-                            
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let studnet of studentsList">
-                            <td >{{studnet.first_name}}</td>
-                            <td>{{studnet.last_name}}</td>
-                            <td>{{studnet.email}}</td>
-                            <td>{{studnet.mobile}}</td>
-                            <td>
-                                <button class="btn btn-outline-danger" (click)="deleteStudent(studnet)">Delete</button>
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
-                </div>
+        <form #studentForm="ngForm" (ngSubmit)="addStudent()" novalidate>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="first_name"
+              placeholder="First Name"
+              #firstNameControl="ngModel"
+              required
+            />
+            <label for="firstName">First name</label>
+            <div
+              *ngIf="
+                firstNameControl.invalid &&
+                (firstNameControl.dirty || firstNameControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="firstNameControl.errors?.['required']"
+                >First name is required</small
+              >
             </div>
-        </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="last_name"
+              placeholder="Last Name"
+              #lastNameControl="ngModel"
+              required
+            />
+            <label for="lastName">Last name</label>
+            <div
+              *ngIf="
+                lastNameControl.invalid &&
+                (lastNameControl.dirty || lastNameControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="lastNameControl.errors?.['required']"
+                >Last name is required</small
+              >
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Email"
+              #emailControl="ngModel"
+              required
+              email
+            />
+            <label for="email">Email address</label>
+            <div
+              *ngIf="
+                emailControl.invalid &&
+                (emailControl.dirty || emailControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="emailControl.errors?.['required']"
+                >Email is required</small
+              >
+              <small class="text-danger" *ngIf="emailControl.errors?.['email']"
+                >Enter a valid email</small
+              >
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="mobile"
+              name="mobile"
+              [(ngModel)]="mobile"
+              placeholder="Mobile"
+              #mobileControl="ngModel"
+              required
+              pattern="[0-9]{10}"
+            />
+            <label for="mobile">Mobile</label>
+            <div
+              *ngIf="
+                mobileControl.invalid &&
+                (mobileControl.dirty || mobileControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="mobileControl.errors?.['required']"
+                >Mobile is required</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="mobileControl.errors?.['pattern']"
+                >Enter a valid 10-digit mobile number</small
+              >
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button
+              type="submit"
+              class="btn btn-outline-success w-100"
+              [disabled]="!studentForm.valid"
+            >
+              {{ editMode ? "Update Student" : "Add Student" }}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
 
+    <div class="col-12 col-md-8 mt-2">
+      <h5 class="text-danger fs-4 fw-medium">Student List</h5>
+      <div class="card p-3 mt-4 shadow mb-5">
+        <div class="student-list">
+          <div class="student-card-header">
+            <div class="student-card-header-item">First name</div>
+            <div class="student-card-header-item">Last name</div>
+            <div class="student-card-header-item">Email</div>
+            <div class="student-card-header-item">Mobile</div>
+            <div class="student-card-header-item">Action</div>
+          </div>
+          <div *ngFor="let student of studentsList" class="student-card">
+            <div class="student-card-item">{{ student.first_name }}</div>
+            <div class="student-card-item">{{ student.last_name }}</div>
+            <div class="student-card-item">{{ student.email }}</div>
+            <div class="student-card-item">{{ student.mobile }}</div>
+            <div class="student-card-actions">
+              <button
+                class="btn btn-outline-success btn-action mt-2 mb-2"
+                (click)="editStudent(student)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                class="btn btn-outline-danger btn-action mt-2 mb-2"
+                (click)="deleteStudent(student)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="loader-container" *ngIf="showLoader">
+  <mat-spinner class="loader"></mat-spinner>
 </div>
