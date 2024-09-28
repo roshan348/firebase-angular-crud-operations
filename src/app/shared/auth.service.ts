@@ -15,7 +15,6 @@ export class AuthService {
 
   constructor(private fireauth: AngularFireAuth, private router: Router) {}
 
-  // login method
   login(email: string, password: string) {
     this.fireauth.signInWithEmailAndPassword(email, password).then(
       (res) => {
@@ -33,7 +32,6 @@ export class AuthService {
       }
     );
   }
-  // register method
   register(email: string, password: string) {
     this.fireauth.createUserWithEmailAndPassword(email, password).then(
       (res) => {
@@ -48,7 +46,6 @@ export class AuthService {
     );
   }
 
-  // sign out
   logout() {
     this.fireauth.signOut().then(
       () => {
@@ -61,7 +58,6 @@ export class AuthService {
     );
   }
 
-  // forgot password
   forgotPassword(email: string) {
     this.fireauth.sendPasswordResetEmail(email).then(
       () => {
@@ -73,7 +69,6 @@ export class AuthService {
     );
   }
 
-  // email verification
   sendEmailForVerification(user: any) {
     console.log(user);
     user.sendEmailVerification().then(
@@ -86,7 +81,6 @@ export class AuthService {
     );
   }
 
-  //sign in with google
   googleSignIn() {
     return this.fireauth.signInWithPopup(new GoogleAuthProvider()).then(
       (res) => {

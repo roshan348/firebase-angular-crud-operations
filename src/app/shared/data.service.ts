@@ -12,26 +12,20 @@ export class DataService {
     private fireStorage: AngularFireStorage
   ) {}
 
-  // add student
   addStudent(student: Student) {
     student.id = this.afs.createId();
     return this.afs.collection('/Students').add(student);
   }
 
-  // get all students
   getAllStudents() {
     return this.afs.collection('/Students').snapshotChanges();
   }
 
-  // delete student
   deleteStudent(student: Student) {
     this.afs.doc('/Students/' + student.id).delete();
   }
 
-  // update student
   updateStudent(student: Student) {
-    // this.deleteStudent(student);
-    // this.addStudent(student);
     return this.afs.doc('/Students/' + student.id).update(student);
   }
 }

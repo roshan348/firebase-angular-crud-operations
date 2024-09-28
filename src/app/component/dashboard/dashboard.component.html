@@ -7,86 +7,131 @@
             {{ editMode ? "Edit Student" : "Add Student" }}
           </h5>
         </div>
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="firstName"
-            name="firstname"
-            [(ngModel)]="first_name"
-            placeholder="First Name"
-          />
-          <label for="firstName">First name</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="lastName"
-            name="lastName"
-            [(ngModel)]="last_name"
-            placeholder="Last Name"
-          />
-          <label for="lastName">Last name</label>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            type="email"
-            class="form-control"
-            id="email"
-            name="email"
-            [(ngModel)]="email"
-            placeholder="Email"
-          />
-          <label for="email">Email address</label>
-          <div
-            *ngIf="
-              studentForm.controls['email'].invalid &&
-              (studentForm.controls['email'].dirty ||
-                studentForm.controls['email'].touched)
-            "
-          >
-            Enter a valid email
+        <form #studentForm="ngForm" (ngSubmit)="addStudent()" novalidate>
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="first_name"
+              placeholder="First Name"
+              #firstNameControl="ngModel"
+              required
+            />
+            <label for="firstName">First name</label>
+            <div
+              *ngIf="
+                firstNameControl.invalid &&
+                (firstNameControl.dirty || firstNameControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="firstNameControl.errors?.['required']"
+                >First name is required</small
+              >
+            </div>
           </div>
-        </div>
-        <div class="form-floating mb-3">
-          <input
-            type="number"
-            class="form-control"
-            id="mobile"
-            name="mobile"
-            [(ngModel)]="mobile"
-            placeholder="Mobile"
-          />
-          <label for="mobile">Mobile</label>
-          <div
-            *ngIf="
-              studentForm.controls['mobile'].invalid &&
-              (studentForm.controls['mobile'].dirty ||
-                studentForm.controls['mobile'].touched)
-            "
-          >
-            Mobile is required
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="last_name"
+              placeholder="Last Name"
+              #lastNameControl="ngModel"
+              required
+            />
+            <label for="lastName">Last name</label>
+            <div
+              *ngIf="
+                lastNameControl.invalid &&
+                (lastNameControl.dirty || lastNameControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="lastNameControl.errors?.['required']"
+                >Last name is required</small
+              >
+            </div>
           </div>
-        </div>
-        <div class="d-flex justify-content-between">
-          <button
-            type="button"
-            class="btn btn-outline-success w-100 me-2"
-            *ngIf="editMode"
-            (click)="updateStudent()"
-          >
-            Update Student
-          </button>
-          <button
-            type="button"
-            class="btn btn-outline-success w-100"
-            *ngIf="!editMode"
-            (click)="addStudent()"
-          >
-            Add Student
-          </button>
-        </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="email"
+              [(ngModel)]="email"
+              placeholder="Email"
+              #emailControl="ngModel"
+              required
+              email
+            />
+            <label for="email">Email address</label>
+            <div
+              *ngIf="
+                emailControl.invalid &&
+                (emailControl.dirty || emailControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="emailControl.errors?.['required']"
+                >Email is required</small
+              >
+              <small class="text-danger" *ngIf="emailControl.errors?.['email']"
+                >Enter a valid email</small
+              >
+            </div>
+          </div>
+
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="mobile"
+              name="mobile"
+              [(ngModel)]="mobile"
+              placeholder="Mobile"
+              #mobileControl="ngModel"
+              required
+              pattern="[0-9]{10}"
+            />
+            <label for="mobile">Mobile</label>
+            <div
+              *ngIf="
+                mobileControl.invalid &&
+                (mobileControl.dirty || mobileControl.touched)
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="mobileControl.errors?.['required']"
+                >Mobile is required</small
+              >
+              <small
+                class="text-danger"
+                *ngIf="mobileControl.errors?.['pattern']"
+                >Enter a valid 10-digit mobile number</small
+              >
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button
+              type="submit"
+              class="btn btn-outline-success w-100"
+              [disabled]="!studentForm.valid"
+            >
+              {{ editMode ? "Update Student" : "Add Student" }}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 

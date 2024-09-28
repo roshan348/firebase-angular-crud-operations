@@ -6,35 +6,50 @@
 .student-card-header,
 .student-card {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-wrap: nowrap;
   border-bottom: 1px solid #ddd;
 }
 
 .student-card-header-item {
-  flex: 1;
-  margin: 0.5rem;
-  font-weight: bold;
+  flex: 1 1 10%;
+  text-align: center;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 
 .student-card-item {
-  flex: 1;
+  flex: 1 1 16%;
+  text-align: center;
   padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+.student-card-header-item {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.student-card-item {
   font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 .student-card {
   align-items: center;
-  border-bottom: 1px solid #ddd;
 }
 
 .student-card-actions {
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
+  flex: 1 1 15%;
 }
 
 .btn-action {
   display: flex;
   align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
 }
 
 .loader-container {

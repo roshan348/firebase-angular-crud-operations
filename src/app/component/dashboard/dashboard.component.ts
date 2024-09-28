@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.studentForm = this.fb.group({
-      email: ['', Validators.required, Validators.email],
+      email: ['', [Validators.required, Validators.email]],
       mobile: ['', Validators.required],
     });
   }
