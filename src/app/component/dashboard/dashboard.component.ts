@@ -93,6 +93,38 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  // updateStudent() {
+  //   if (
+  //     this.first_name == '' ||
+  //     this.last_name == '' ||
+  //     this.mobile == '' ||
+  //     this.email == ''
+  //   ) {
+  //     alert('Fill all input fields');
+  //     return;
+  //   }
+
+  //   if (this.studentToEdit) {
+  //     const updatedStudent: Student = {
+  //       id: this.studentToEdit.id,
+  //       first_name: this.first_name,
+  //       last_name: this.last_name,
+  //       email: this.email,
+  //       mobile: this.mobile,
+  //     };
+
+  //     this.data
+  //       .updateStudent(updatedStudent)
+  //       .then(() => {
+  //         this.resetForm();
+  //         alert('Student updated successfully');
+  //       })
+  //       .catch((err) => {
+  //         console.error('Error updating student:', err);
+  //       });
+  //   }
+  // }
+
   updateStudent() {
     if (
       this.first_name == '' ||
@@ -106,16 +138,26 @@ export class DashboardComponent implements OnInit {
 
     if (this.studentToEdit) {
       const updatedStudent: Student = {
-        id: this.id,
+        id: this.studentToEdit.id, // Make sure the ID is correctly assigned
         first_name: this.first_name,
         last_name: this.last_name,
         email: this.email,
         mobile: this.mobile,
       };
 
-      this.data.updateStudent(updatedStudent).then(() => {
-        this.resetForm();
-      });
+      this.data
+        .updateStudent(updatedStudent)
+        .then(() => {
+          alert('Student updated successfully');
+          this.resetForm();
+          this.getAllStudents(); // Refresh the list after updating
+        })
+        .catch((error) => {
+          console.error('Error updating student:', error);
+          alert('Failed to update student');
+        });
+    } else {
+      alert('No student selected for editing');
     }
   }
 

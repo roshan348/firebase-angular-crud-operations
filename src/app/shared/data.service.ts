@@ -26,6 +26,20 @@ export class DataService {
   }
 
   updateStudent(student: Student) {
-    return this.afs.doc('/Students/' + student.id).update(student);
+    // return this.afs.doc('/Students/' + student.id).update(student);
+    return this.afs.doc(`/Students/${student.id}`).update(student);
   }
+
+  // updateStudent(student: Student) {
+  //   console.log('Updating student in Firestore with ID:', student.id);
+  //   return this.afs
+  //     .doc<Student>(`/Students/${student.id}`)
+  //     .update(student)
+  //     .then(() => {
+  //       console.log('Update successful');
+  //     })
+  //     .catch((err) => {
+  //       console.error('Error updating document:', err);
+  //     });
+  // }
 }
