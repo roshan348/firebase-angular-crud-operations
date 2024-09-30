@@ -7,7 +7,7 @@
             {{ editMode ? "Edit Student" : "Add Student" }}
           </h5>
         </div>
-        <form #studentForm="ngForm" (ngSubmit)="addStudent()" novalidate>
+        <form #studentForm="ngForm" novalidate>
           <div class="form-floating mb-3">
             <input
               type="text"
@@ -127,6 +127,7 @@
               type="submit"
               class="btn btn-outline-success w-100"
               [disabled]="!studentForm.valid"
+              (click)="editMode ? updateStudent() : addStudent()"
             >
               {{ editMode ? "Update Student" : "Add Student" }}
             </button>

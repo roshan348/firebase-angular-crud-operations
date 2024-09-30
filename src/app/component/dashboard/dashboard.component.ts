@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
     email: '',
     mobile: '',
   };
+
   id: string = '';
   first_name: string = '';
   last_name: string = '';
@@ -126,15 +127,15 @@ export class DashboardComponent implements OnInit {
   // }
 
   updateStudent() {
-    if (
-      this.first_name == '' ||
-      this.last_name == '' ||
-      this.mobile == '' ||
-      this.email == ''
-    ) {
-      alert('Fill all input fields');
-      return;
-    }
+    // if (
+    //   this.first_name == '' ||
+    //   this.last_name == '' ||
+    //   this.mobile == '' ||
+    //   this.email == ''
+    // ) {
+    //   alert('Fill all input fields');
+    //   return;
+    // }
 
     if (this.studentToEdit) {
       const updatedStudent: Student = {
